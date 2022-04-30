@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Checkin;
-use App\Http\Requests\StoreCheckinRequest;
 
 class CheckinService
 {
@@ -11,13 +10,6 @@ class CheckinService
     {
         $this->User = auth('sanctum')->user();
     }
-
-    /**
-     * Create a new checkin
-     * @param  Request $request
-     * @return Checkin
-     * @throws \Exception
-     */
 
     public function newCheckin($request)
     {
@@ -33,11 +25,6 @@ class CheckinService
         }
     }
 
-    /**
-     * Create a new checkin
-     * @param StoreCheckinRequest $request
-     * @return Checkin
-     */
 
     protected function createCheckin($request)
     {
@@ -59,11 +46,6 @@ class CheckinService
 
         return $response;
     }
-    /**
-     *  Create checkout
-     *  @param $request
-     *  @return \Illuminate\Http\JsonResponse
-     */
 
     protected function createCheckout($request)
     {

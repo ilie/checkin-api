@@ -19,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Route::get('/test', function () {
-//     return "This is just a test. It works!";
-// });
+Route::get('/test', function () {
+    return phpinfo();
+});

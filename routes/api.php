@@ -26,17 +26,17 @@ Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('p
 
 // Users
 Route::prefix('users')->middleware('auth:sanctum')->group(function () {
-     Route::get('/', [UsersController::class, 'index'])->name('users.index');
-     Route::post('/register', [UsersController::class, 'store'])->name('users.store');
-     Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
-     Route::put('/{id}/update-password', [UsersController::class, 'updatePassword'])->name('users.update.password');
-     Route::put('/{user}', [UsersController::class, 'update'])->name('users.update');
-     Route::delete('/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
+    Route::get('/', [UsersController::class, 'index'])->name('users.index');
+    Route::post('/register', [UsersController::class, 'store'])->name('users.store');
+    Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
+    Route::put('/{id}/update-password', [UsersController::class, 'updatePassword'])->name('users.update.password');
+    Route::put('/{user}', [UsersController::class, 'update'])->name('users.update');
+    Route::delete('/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
 });
 // Checkins
 Route::prefix('checkins')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', [CheckinsController::class, 'index']);
-    Route::post('/', [CheckinsController::class, 'store'])->name('checkins.index');
+    Route::get('/', [CheckinsController::class, 'index'])->name('checkins.index');
+    Route::post('/', [CheckinsController::class, 'store'])->name('checkins.store');
     Route::get('/{checkin}', [CheckinsController::class, 'show'])->name('checkins.show');
     Route::put('/{checkin}', [CheckinsController::class, 'update'])->name('checkins.update');
     Route::delete('/{checkin}', [CheckinsController::class, 'destroy'])->name('checkins.destroy');
