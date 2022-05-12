@@ -37,6 +37,7 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
 Route::prefix('checkins')->middleware('auth:sanctum')->group(function () {
     Route::get('/', [CheckinsController::class, 'index'])->name('checkins.index');
     Route::post('/', [CheckinsController::class, 'store'])->name('checkins.store');
+    Route::get('/status', [CheckinsController::class, 'status'])->name('checkins.status');
     Route::get('/{checkin}', [CheckinsController::class, 'show'])->name('checkins.show');
     Route::put('/{checkin}', [CheckinsController::class, 'update'])->name('checkins.update');
     Route::delete('/{checkin}', [CheckinsController::class, 'destroy'])->name('checkins.destroy');

@@ -8,7 +8,7 @@ use App\Services\CheckinService;
 use App\Http\Resources\CheckinResource;
 use App\Http\Resources\CheckinCollection;
 use App\Http\Requests\UpdateCheckinRequest;
-
+use phpDocumentor\Reflection\Types\Boolean;
 
 class CheckinsController extends Controller
 {
@@ -37,6 +37,13 @@ class CheckinsController extends Controller
     {
         $this->authorize('view', $checkin);
         return CheckinResource::make($checkin);
+    }
+
+    // Return latest status
+    public function status(Checkin $checkin, CheckinService $checkinService)
+    {
+        $this->authorize('view', $checkin);
+        return $checkinService->getStatus();
     }
 
     // Create a new checkin

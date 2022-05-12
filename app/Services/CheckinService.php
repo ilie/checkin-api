@@ -25,6 +25,17 @@ class CheckinService
         }
     }
 
+    public function getStatus()
+    {
+        $latestCheckin = $this->User->checkins()->latest()->first();
+        if ($latestCheckin->checkout_time === null) {
+            $status = 'checkin';
+        } else {
+            $status = 'checkout';
+        }
+        return response()->json(['status' => $status], 200);
+    }
+
 
     protected function createCheckin($request)
     {
