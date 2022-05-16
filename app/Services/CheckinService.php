@@ -33,7 +33,7 @@ class CheckinService
         } else {
             $status = 'checkout';
         }
-        return response()->json(['status' => $status], 200);
+        return response()->json(['status' => $status, 'checkinId' => $latestCheckin->id], 200);
     }
 
 
@@ -64,17 +64,17 @@ class CheckinService
         $checkin = '';
 
         // Get latest checkin whether we have an expected checkin id or not
-        if($expectedCheckinId){
-           $checkin = $this->User->checkins()->findOrFail($expectedCheckinId);
-        }else{
+        if ($expectedCheckinId) {
+            $checkin = $this->User->checkins()->findOrFail($expectedCheckinId);
+        } else {
             $checkin = $this->User->checkins()->where(['checkin_date' => today()->toDateString(), 'checkout_time' => null])->first();
         }
 
-        if(is_null($checkin)){
+        if (is_null($checkin)) {
             abort(400, 'You need to check in first');
         }
 
-        $checkin->update([ 'checkout_time' => now()->toTimeString()]);
+        $checkin->update(['checkout_time' => now()->toTimeString()]);
 
         return $checkin;
     }
