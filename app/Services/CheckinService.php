@@ -44,7 +44,7 @@ class CheckinService
         $response = '';
 
         if ($onlyCheckin) {
-            abort(400, 'You have already checked in today');
+            abort(400, 'You checked in earlier, please check out first!');
         } else {
             $checkin = Checkin::create([
                 'user_id' => $request->user()->id,
