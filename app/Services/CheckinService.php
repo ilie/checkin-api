@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-
+use Carbon\Carbon;
 use App\Models\Checkin;
 
 class CheckinService
@@ -27,13 +27,21 @@ class CheckinService
 
     public function getStatus()
     {
-        $latestCheckin = $this->User->checkins()->latest()->first();
-        if ($latestCheckin->checkout_time === null) {
-            $status = 'checkin';
-        } else {
+        $today = Carbon::now()->toDateString();
+        $count = $this->User->checkins()->where('checkin_date', $today)->count();
+        if($count > 1){
+            $latestCheckin = $this->User->checkins()->where('checkin_date', $today)->latest()->first();
+            if ($latestCheckin->checkout_time === null) {
+                $status = 'checkin';
+            } else {
+                $status = 'checkout';
+            }
+            $checkinId = $latestCheckin->id;
+        }else {
             $status = 'checkout';
+            $checkinId = null;
         }
-        return response()->json(['status' => $status, 'checkinId' => $latestCheckin->id], 200);
+        return response()->json(['status' => $status, 'checkinId' => $checkinId], 200);
     }
 
 
