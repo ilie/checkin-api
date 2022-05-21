@@ -53,6 +53,13 @@ class CheckinsController extends Controller
         return CheckinResource::make($checkin);
     }
 
+    // Create a new checkin manualy
+    public function storeManually(Request $request, CheckinService $checkinService)
+    {
+        $checkin = $checkinService->createCheckinManually($request);
+        return CheckinResource::make($checkin);
+    }
+
     // Update checkin
     public function update(UpdateCheckinRequest $request, Checkin $checkin): CheckinResource
     {
