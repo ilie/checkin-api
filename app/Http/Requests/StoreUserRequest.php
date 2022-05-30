@@ -30,7 +30,7 @@ class StoreUserRequest extends FormRequest
             'social_sec_num' => 'required|string|max:25',
             'hours_on_contract' => 'required|numeric|between:1,40',
             'is_admin' => 'required|boolean',
-            'password' => 'required|string|between:4,16|confirmed',
+            'password' => 'required|string|between:8,16|confirmed',
         ];
     }
 }

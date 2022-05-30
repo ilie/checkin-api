@@ -25,8 +25,8 @@ class UpdateCheckinRequest extends FormRequest
     {
         return [
             'checkin_date' => 'required|date',
-            'checkin_time' => 'required|date_format:H:i',
-            'checkout_time' => 'nullable|date_format:H:i',
+            'checkin_time' => 'required|date_format:H:i:s',
+            'checkout_time' => 'nullable|date_format:H:i:s',
         ];
     }
 }
