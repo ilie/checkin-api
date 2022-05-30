@@ -42,7 +42,6 @@ class CheckinsController extends Controller
     // Return latest status
     public function status(Checkin $checkin, CheckinService $checkinService)
     {
-        $this->authorize('view', $checkin);
         return $checkinService->getStatus();
     }
 
