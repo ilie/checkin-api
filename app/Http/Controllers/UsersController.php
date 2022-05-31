@@ -18,7 +18,13 @@ class UsersController extends Controller
     public function index(): UserCollection
     {
         $this->authorize('view', User::class);
-        return UserCollection::make(User::all());
+        $users = User::query();
+        return UserCollection::make(
+            $users
+                ->allowedSortFields()
+                ->allowedFilterFields()
+                ->jsonPaginate()
+        );
     }
 
     // Get a user
