@@ -6,10 +6,10 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 
 class User extends Authenticatable
 {
@@ -52,6 +52,26 @@ class User extends Authenticatable
     // User has many checkins
     public function checkins(){
         return $this->hasMany(Checkin::class);
+    }
+
+    public function scopeYear(Builder $query, $year)
+    {
+        return $query->whereYear('created_at', $year);
+    }
+
+    public function scopeMonth(Builder $query, $month)
+    {
+        return $query->whereMonth('created_at', $month);
+    }
+
+    public function scopeDay(Builder $query, $day)
+    {
+        return $query->whereDay('created_at', $day);
+    }
+
+    public function scopeName(Builder $query, $user)
+    {
+        return $query->where('name', 'Like', '%' . $user . '%');
     }
 
     public function sendPasswordResetNotification($token)

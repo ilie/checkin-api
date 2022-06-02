@@ -31,7 +31,7 @@ class JsonApiServiceProvider extends ServiceProvider
         {
             /** @var Builder $this */
 
-            $allowedSortFields = ['checkin_date', 'created_at', 'user_id'];
+            $allowedSortFields = ['checkin_date', 'created_at', 'user_id', 'name'];
             if (request()->filled('sort')) {
                 $sortFields = explode(',', request()->sort);
                 foreach ($sortFields as $sortField) {
@@ -47,7 +47,7 @@ class JsonApiServiceProvider extends ServiceProvider
 
         Builder::macro('allowedFilterFields', function () {
             /** @var Builder $this */
-            $allowedFilters = ['user', 'year', 'month', 'day', 'date'];
+            $allowedFilters = ['user', 'year', 'month', 'day', 'date', 'name'];
             if (request()->filled('filter')) {
                 $filters = request('filter', []);
                 foreach ($filters as $filter => $value) {
