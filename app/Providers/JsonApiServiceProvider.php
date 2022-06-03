@@ -47,7 +47,7 @@ class JsonApiServiceProvider extends ServiceProvider
 
         Builder::macro('allowedFilterFields', function () {
             /** @var Builder $this */
-            $allowedFilters = ['user', 'year', 'month', 'day', 'date', 'name'];
+            $allowedFilters = ['user', 'year', 'month', 'day', 'date', 'name', 'email'];
             if (request()->filled('filter')) {
                 $filters = request('filter', []);
                 foreach ($filters as $filter => $value) {

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Checkin;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
@@ -50,7 +51,8 @@ class User extends Authenticatable
     ];
 
     // User has many checkins
-    public function checkins(){
+    public function checkins()
+    {
         return $this->hasMany(Checkin::class);
     }
 
@@ -72,6 +74,11 @@ class User extends Authenticatable
     public function scopeName(Builder $query, $user)
     {
         return $query->where('name', 'Like', '%' . $user . '%');
+    }
+
+    public function scopeEmail(Builder $query, $email)
+    {
+        return $query->where('email',  $email);
     }
 
     public function sendPasswordResetNotification($token)
